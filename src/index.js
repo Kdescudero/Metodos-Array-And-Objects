@@ -1,3 +1,5 @@
+import deepFreeze from "deep-freeze";
+
 const productos = [
   { nombre: "Ordenador PC", precio: 699, departamento: "Tecnología" },
   { nombre: "Sartenes Verdes", precio: 39, departamento: "Hogar" },
@@ -59,12 +61,21 @@ const suma = productos.reduce((total, item) => total + item.precio, 0);
 
 // ------------------------------------------------------------------------------- //
 
-// Metodo ( Object.freeze ) hace que un objeto no pueda ser alterado
+// Metodo ( Object.freeze ) hace que un objeto no pueda ser alterado en primer nivel
 
 const PRECIO = Object.freeze({
   empanada: 5,
   arepa: 8,
-  tacos: 5
+  tacos: 5,
+  cremas: {
+    verde: 4
+  }
 });
 
+// Libreria para conjelar todos los niveles del objeto
+
+deepFreeze(PRECIO);
+
 // PRECIO.tacos = 6 // --> retorna error por que el objeto es inmutable
+
+// utilizar libreria para conjedar todo el objeto
